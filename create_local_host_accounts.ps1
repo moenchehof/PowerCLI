@@ -7,7 +7,7 @@
 # Author: Torsten Sasse - InterFace AG                          #
 # Contact: torsten.sasse@interface-ag.de                        #
 #                                                               #
-# Version 01.12.2017                                            #
+# Version 4                                            #
 #                                                               #
 #################################################################
 
