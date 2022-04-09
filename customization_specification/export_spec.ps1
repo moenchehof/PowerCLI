@@ -1,4 +1,5 @@
 <#
+
 .SYNOPSIS
 export_custom_spec.ps1
 Script exports a vCenter customization specification.
@@ -10,7 +11,8 @@ Version 1.0
 .DESCRIPTION
 A vCenter customization specification is exported as xml to download folder of users home.
 A list of all available customization specifications is provided.
-This script works for Linux, Windows and MacOS.
+This script is OS aware and works for Linux and Windows.
+MacOS will also be tested for a later version, but might already work.
 
 Installed PowerCli module is required.
 
@@ -28,33 +30,30 @@ LIMITED TO THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS
 FOR A PARTICULAR PURPOSE. THE ENTIRE RISK OF USE, INABILITY TO USE, OR
 RESULTS FROM THE USE OF THIS CODE REMAINS WITH THE USER.
 
-
 #>
-
-
-
 
 # Helper Lines:
 # Connect-VIServer -Server server -User administrator@vsphere.local -Password 'pw'
 # Get-View CustomizationSpecManager | Get-Member
 
-$server=Read-Host `n"vCenter FQDN?"
+$server = Read-Host `n"vCenter FQDN?"
 
 Connect-VIServer -Server $server
 
-$view=Get-View CustomizationSpecManager
+$view = Get-View CustomizationSpecManager
 
 Write-Host -ForegroundColor DarkYellow `n"Following specs are available for export"
 ""
 $view.info.name
 
-$name=Read-Host -Prompt `n"which spec should be exported?"
+$name = Read-Host -Prompt `n"which spec should be exported?"
 
-$spec=$view.GetCustomizationSpec($name)
-$xml=$view.CustomizationSpecItemToXml($spec)
+$spec = $view.GetCustomizationSpec($name)
+$xml = $view.CustomizationSpecItemToXml($spec)
 $xml | Out-File ~/Downloads/$name.xml
 
 Write-Host -ForegroundColor Green `n"done!"
-Write-Host `n"Find file here: ~/Downloads/$name.xml"
+Write-Host -BackgroundColor green `n"Find file here: ~/Downloads/$name.xml"
 
 Disconnect-VIServer -Server $server -Confirm:$false
+Write-Host -ForegroundColor Green `n"Disconnected succesfully from " $server
