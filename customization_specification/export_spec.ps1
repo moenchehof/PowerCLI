@@ -32,22 +32,25 @@ RESULTS FROM THE USE OF THIS CODE REMAINS WITH THE USER.
 
 #>
 
-# Helper Lines:
-# Connect-VIServer -Server server -User administrator@vsphere.local -Password 'pw'
-# Get-View CustomizationSpecManager | Get-Member
+## Helper Lines:
+## Connect-VIServer -Server server -User administrator@vsphere.local -Password 'pw'
+## Get-View CustomizationSpecManager | Get-Member
 
+## get inputs
 $server = Read-Host `n"vCenter FQDN?"
 
 Connect-VIServer -Server $server
 
 $view = Get-View CustomizationSpecManager
 
+## list available custom specs
 Write-Host -ForegroundColor DarkYellow `n"Following specs are available for export"
 ""
 $view.info.name
 
 $name = Read-Host -Prompt `n"which spec should be exported?"
 
+## convert spec to xml and write file
 $spec = $view.GetCustomizationSpec($name)
 $xml = $view.CustomizationSpecItemToXml($spec)
 $xml | Out-File ~/Downloads/$name.xml
@@ -55,5 +58,6 @@ $xml | Out-File ~/Downloads/$name.xml
 Write-Host -ForegroundColor Green `n"done!"
 Write-Host -BackgroundColor green `n"Find file here: ~/Downloads/$name.xml"
 
+## disconnect & exit
 Disconnect-VIServer -Server $server -Confirm:$false
 Write-Host -ForegroundColor Green `n"Disconnected succesfully from " $server
