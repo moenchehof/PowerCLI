@@ -34,10 +34,17 @@ RESULTS FROM THE USE OF THIS CODE REMAINS WITH THE USER.
 ## vCenter FQDN input
 $server = Read-Host `n"vCenter FQDN?"
 
-Connect-VIServer -Server $server
+Try{
+    Connect-VIserver -server $server -ErrorAction Stop | Out-Null
+    }
+    Catch{
+        Write-Host "could not connect to $server " -ForegroundColor Red
+        Write-Host "Check the FQDN and/or credentials for $server and start again " -ForegroundColor yellow
+        exit
+}
 
 ## filename input & check if exists
-$fileName = Read-Host -Prompt "Which custom spec should be imported (i.e. <specName>.xml"
+$fileName = Read-Host -Prompt `n"Which custom spec should be imported (i.e. <specName>.xml"
 if (-not(test-path -Path ~/Downloads/$fileName)) {
     Write-Host -ForegroundColor Red "file does not exist - for security reasons script stops here"
     exit
