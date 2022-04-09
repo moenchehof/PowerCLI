@@ -4,8 +4,8 @@
 # a given cluster; removes the "EmergencyAccess" role and       #
 # permissions mapped to this user                               #
 #                                                               #
-# Author: Torsten Sasse - InterFace AG                          #
-# Contact: torsten.sasse@interface-ag.de                        #
+# Author: Torsten Sasse - salanet                               #
+# Contact: torsten.sasse@salanet.de                             #
 #                                                               #
 # Version 4                                                     #
 #                                                               #
