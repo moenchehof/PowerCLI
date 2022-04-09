@@ -37,6 +37,7 @@ RESULTS FROM THE USE OF THIS CODE REMAINS WITH THE USER.
 ## get inputs
 $server = Read-Host `n"vCenter FQDN?"
 
+## connect to vCenter
 Try{
     Connect-VIserver -server $server -ErrorAction Stop | Out-Null
     }
