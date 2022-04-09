@@ -35,7 +35,7 @@ RESULTS FROM THE USE OF THIS CODE REMAINS WITH THE USER.
 
 
 # Helper Lines:
-# Connect-VIServer -Server vifvvc010.str.if.de -User administrator@vsphere.local -Password 'vSphere$mgmt$2019'
+# Connect-VIServer -Server server -User administrator@vsphere.local -Password 'pw'
 # Get-View CustomizationSpecManager | Get-Member
 
 $server=Read-Host `n"vCenter FQDN?"
