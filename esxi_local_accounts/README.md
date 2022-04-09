@@ -1,7 +1,7 @@
 PowerShell PowerCLI VMware ESXi
 
 
-# two scripts in project
+# two scripts in folder
 
 ## CreateLocalHostAccount
 Creates local host account, role, and maps account to role at host root level
