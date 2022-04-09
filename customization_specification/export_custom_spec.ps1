@@ -37,7 +37,14 @@ RESULTS FROM THE USE OF THIS CODE REMAINS WITH THE USER.
 ## get inputs
 $server = Read-Host `n"vCenter FQDN?"
 
-Connect-VIServer -Server $server
+Try{
+    Connect-VIserver -server $server -ErrorAction Stop | Out-Null
+    }
+    Catch{
+        Write-Host "could not connect to $server " -ForegroundColor Red
+        Write-Host "Check the FQDN and/or credentials for $server and start again " -ForegroundColor yellow
+        exit
+}
 
 $view = Get-View CustomizationSpecManager
 
