@@ -4,10 +4,10 @@
 # each host in a given cluster.                                 #
 # Create local host account, role, and map account              #
 #                                                               #
-# Author: Torsten Sasse - InterFace AG                          #
-# Contact: torsten.sasse@interface-ag.de                        #
+# Author: Torsten Sasse - salanet                               #
+# Contact: torsten.sasse@salanet.de                             #
 #                                                               #
-# Version 4                                            #
+# Version 4                                                     #
 #                                                               #
 #################################################################
 
