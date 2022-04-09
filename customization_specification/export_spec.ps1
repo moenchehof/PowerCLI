@@ -11,8 +11,6 @@ Version 1.0
 .DESCRIPTION
 A vCenter customization specification is exported as xml to download folder of users home.
 A list of all available customization specifications is provided.
-This script is OS aware and works for Linux and Windows.
-MacOS will also be tested for a later version, but might already work.
 
 Installed PowerCli module is required.
 
