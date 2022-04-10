@@ -45,9 +45,11 @@ Try{
 }
 
 ## filename input & check if exists
-$fileName = Read-Host -Prompt `n"Which custom spec should be imported (i.e. <specName>.xml"
+$fileName = Read-Host -Prompt `n"Which custom spec should be imported <specName>.xml (must be located in users home -Downloads- folder)"
 if (-not(test-path -Path ~/Downloads/$fileName)) {
     Write-Host -ForegroundColor Red "file does not exist - for security reasons script stops here"
+    Disconnect-VIserver -server $server -Confirm:$false
+    Write-Host -ForegroundColor Green `n"Disconnected succesfully from " $server
     exit
 }
 
