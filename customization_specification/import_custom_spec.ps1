@@ -6,7 +6,7 @@ Script imports a vCenter customization specification.
 
 Author:
 Torsten Sasse
-Version 1.0
+Version 1.1
 
 .DESCRIPTION
 A vCenter customization specification is imported from xml file.
