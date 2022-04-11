@@ -31,6 +31,15 @@ RESULTS FROM THE USE OF THIS CODE REMAINS WITH THE USER.
 
 #>
 
+Function Disconnect-csVcenter {
+    Param (
+        [Parameter(Mandatory=$true)][string]$server
+    )
+    Disconnect-VIserver -server $server -Confirm:$false
+    Write-Host -ForegroundColor Green `n"Disconnected succesfully from " $server
+    exit
+}
+
 ## vCenter FQDN input
 $server = Read-Host `n"vCenter FQDN?"
 
@@ -48,9 +57,7 @@ Try{
 $fileName = Read-Host -Prompt `n"Which custom spec should be imported <specName>.xml (must be located in users home -Downloads- folder)"
 if (-not(test-path -Path ~/Downloads/$fileName)) {
     Write-Host -ForegroundColor Red "file does not exist - for security reasons script stops here"
-    Disconnect-VIserver -server $server -Confirm:$false
-    Write-Host -ForegroundColor Green `n"Disconnected succesfully from " $server
-    exit
+    Disconnect-csVcenter $server
 }
 
 ## prepare for import using CustomizationSpecManager methods
@@ -69,9 +76,7 @@ if ($view.DoesCustomizationSpecExist($spec.Info.Name)) {
     }
     if ($answer -eq "no") 
     {Write-Host -ForegroundColor Red `n"exit! nothing was imported! - please check existing custom specs in vCenter"
-        Disconnect-VIserver -server $server -Confirm:$false
-        Write-Host -ForegroundColor Green `n"Disconnected succesfully from " $server
-     exit
+        Disconnect-csVcenter $server
     } 
 }
     
@@ -84,5 +89,4 @@ $view.CreateCustomizationSpec($spec)
 write-host -ForegroundColor Green `n"vCenter custom spec ***" $spec.Info.Name "*** was successfully imported to " $server
 
 ## disconnect & exit
-Disconnect-VIServer -Server $server -Confirm:$false
-Write-Host -ForegroundColor Green `n"Disconnected succesfully from " $server
+Disconnect-csVcenter $server
